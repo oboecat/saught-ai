@@ -1,8 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Saught AI
 
-## Getting Started
+A little widget that connects your page, your users, and their favorite agent.
 
-First, run the development server:
+## What is it?
+
+Saught AI is a lightweight JavaScript widget that adds an "Ask AI" button to any webpage. When users click it, they can ask questions about the current page content and get redirected to their preferred AI service (ChatGPT, Claude, Perplexity, etc.) with full context.
+
+## Features
+
+- **Contextual**: Automatically includes what the user is reading and any text they select
+- **Familiar**: Opens in the user's preferred AI service with full context  
+- **Zero complexity**: No servers, no tracking, no database - just a simple redirect
+
+## Installation
+
+### HTML (Works anywhere)
+
+```html
+<!-- Latest version (recommended) -->
+<script async src="https://cdn.saught.ai/v0.js"></script>
+
+<!-- Or pin to specific version -->
+<script async src="https://cdn.saught.ai/v0.2.0.js"></script>
+```
+
+### shadcn (React/Next.js)
+
+```bash
+npx shadcn add https://saught.ai
+```
+
+Then use it in your component:
+
+```javascript
+import { FloatingAIWidget } from "@/components/floating-ai-widget"
+
+export default function MyPage() {
+  return (
+    <div>
+      {/* Your content */}
+      <FloatingAIWidget />
+    </div>
+  )
+}
+```
+
+## Configuration
+
+### Set a default AI service
+
+```html
+<script 
+  src="https://cdn.saught.ai/v0.js"
+  data-default-ai="claude"
+></script>
+```
+
+Options: `chatgpt`, `claude`, `perplexity`, `copilot`, `grok`
+
+### Custom placeholder
+
+```html
+<script 
+  src="https://cdn.saught.ai/v0.js"
+  data-placeholder="Ask about our docs..."
+></script>
+```
+
+### Custom prompt template
+
+```html
+<script 
+  src="https://cdn.saught.ai/v0.js"
+  data-agent-prompt="You're helping someone on ${webpage_url}. They selected: ${text_selection_context}. Question: ${question}"
+></script>
+```
+
+Available variables: `${webpage_url}`, `${question}`, `${text_selection_context}`
+
+## Development
+
+This is a [Next.js](https://nextjs.org) project. To run the development server:
 
 ```bash
 npm run dev
@@ -14,23 +92,18 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Visit [saught.ai](https://saught.ai) to see the widget in action - click the "Ask AI" button in the bottom-right corner.
 
-## Learn More
+## Why not a chatbot?
 
-To learn more about Next.js, take a look at the following resources:
+Because it's free. Instead of building another chatbot, Saught AI leverages the AI services your users already know and love.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Credits
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Special thanks to [Ian Hassard](https://ca.linkedin.com/in/ianhassard) for the name and graciously providing the domain.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built because I needed it.
