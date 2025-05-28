@@ -1,103 +1,199 @@
-import Image from "next/image";
+import { CodeBlock } from "@/components/code-block";
+import { FloatingAIWidget } from "@/components/floating-ai-widget";
+import { PlatformTabs } from "@/components/platform-tabs";
+import { Sparkles, Zap, Shield } from "lucide-react";
+import Link from "next/link";
+import {
+  WIDGET_LATEST_URL,
+  WIDGET_PINNED_URL,
+  MAJOR_VERSION,
+  VERSION,
+} from "@/lib/version";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-white text-gray-600">
+      {/* Hero Section */}
+      <section className="max-w-4xl mx-auto px-6 pt-24 pb-20">
+        <div className="text-center">
+          <h1 className="text-5xl font-normal text-black mb-6 tracking-tight">
+            Saught <span className="text-gray-400 text-3xl">AI</span>
+          </h1>
+          <p className="text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+            A little widget that connects your page, your users, and their
+            favorite agent.
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Installation Section */}
+      <section className="max-w-4xl mx-auto px-6 pb-16">
+        <h2 className="text-3xl font-normal text-black mb-4 text-center">
+          How to add it
+        </h2>
+
+        <PlatformTabs />
+      </section>
+      <section className="max-w-4xl mx-auto px-6 pb-24">
+        <p className="text-base mb-4">
+          See the "Ask AI" button in the bottom-right? Click it and ask about
+          anything on this page.{" "}
+          <Link
+            href="/demo"
+            className=" text-blue-600 hover:text-blue-700 transition-colors"
+          >
+            More examples →
+          </Link>
+        </p>
+      </section>
+
+      {/* Features */}
+      <section className="max-w-4xl mx-auto px-6 pb-32">
+        <h2 className="text-3xl font-normal text-black mb-2 text-center">
+          Why not a chatbot?
+        </h2>
+        <p className="text-center text-gray-500 mb-16">Because it's free.</p>
+
+        <div className="grid md:grid-cols-3 gap-8 mt-12">
+          <div className="text-center">
+            <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-100 rounded-lg mb-4">
+              <Sparkles className="w-6 h-6 text-gray-600" />
+            </div>
+            <h3 className="font-medium text-black mb-2">Contextual</h3>
+            <p className="text-sm">
+              Automatically includes what the user is reading and any text they
+              select
+            </p>
+          </div>
+          <div className="text-center">
+            <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-100 rounded-lg mb-4">
+              <Zap className="w-6 h-6 text-gray-600" />
+            </div>
+            <h3 className="font-medium text-black mb-2">Familiar</h3>
+            <p className="text-sm">
+              Opens in the user's preferred AI service with full context
+            </p>
+          </div>
+          <div className="text-center">
+            <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-100 rounded-lg mb-4">
+              <Shield className="w-6 h-6 text-gray-600" />
+            </div>
+            <h3 className="font-medium text-black mb-2">Zero complexity</h3>
+            <p className="text-sm">
+              No servers, no tracking, no database - just a simple redirect
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Configuration Section */}
+      <section className="max-w-4xl mx-auto px-6 pb-32">
+        <h2 className="text-3xl font-normal text-black mb-12 text-center">
+          Customize It
+        </h2>
+
+        <div className="space-y-12">
+          <div>
+            <h3 className="text-lg text-black mb-4">
+              Set a default AI service:
+            </h3>
+            <CodeBlock
+              language="html"
+              code={`<script 
+  src="${WIDGET_LATEST_URL}"
+  data-default-ai="claude"
+></script>`}
+            />
+            <p className="text-sm text-gray-500 mt-2">
+              Options: chatgpt, claude, perplexity, copilot, grok
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg text-black mb-4">Custom placeholder:</h3>
+            <CodeBlock
+              language="html"
+              code={`<script 
+  src="${WIDGET_LATEST_URL}"
+  data-placeholder="Ask about our docs..."
+></script>`}
+            />
+          </div>
+
+          <div>
+            <h3 className="text-lg text-black mb-4">Custom prompt template:</h3>
+            <CodeBlock
+              language="html"
+              code={`<script 
+  src="${WIDGET_LATEST_URL}"
+  data-agent-prompt="You're helping someone on \${webpage_url}. They selected: \${text_selection_context}. Question: \${question}"
+></script>`}
+            />
+            <p className="text-sm text-gray-500 mt-2">
+              Variables:{" "}
+              <code className="bg-gray-100 px-1">${`{webpage_url}`}</code>,{" "}
+              <code className="bg-gray-100 px-1">${`{question}`}</code>,{" "}
+              <code className="bg-gray-100 px-1">
+                ${`{text_selection_context}`}
+              </code>
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg text-black mb-4">Version pinning:</h3>
+            <CodeBlock
+              language="html"
+              code={`<!-- Always get latest updates -->
+<script src="${WIDGET_LATEST_URL}"></script>
+
+<!-- Pin to specific version for stability -->
+<script src="${WIDGET_PINNED_URL}"></script>`}
+            />
+            <p className="text-sm text-gray-500 mt-2">
+              Use <code className="bg-gray-100 px-1">v{MAJOR_VERSION}.js</code>{" "}
+              for automatic updates, or pin to a specific version like{" "}
+              <code className="bg-gray-100 px-1">v{VERSION}.js</code> for
+              production stability.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="max-w-4xl mx-auto px-6 pb-12">
+        <div className="text-center space-y-4">
+          <p className="text-sm text-gray-500 mb-4">
+            Special thanks to{" "}
+            <a
+              target="_blank"
+              href="https://ca.linkedin.com/in/ianhassard"
+              className="text-black hover:underline"
+            >
+              Ian Hassard
+            </a>{" "}
+            for the name and graciously providing the domain.
+          </p>
+          <p className="text-gray-500 text-xs font-semibold">
+            Built by{" "}
+            <a
+              href="https://twitter.com/oboecat007"
+              className="text-black hover:underline"
+            >
+              @oboecat007
+            </a>{" "}
+            because I needed it.{" "}
+            <a
+              href="https://github.com/oboecat/saught-ai"
+              className="inline-flex underline text-xs transition-colors"
+            >
+              view source
+            </a>
+          </p>
+        </div>
       </footer>
+
+      {/* Demo Widget */}
+      <FloatingAIWidget />
     </div>
   );
 }
