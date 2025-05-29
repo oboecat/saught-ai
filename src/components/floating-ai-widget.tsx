@@ -146,7 +146,12 @@ export function FloatingAIWidget({
     const handleSelectionEnd = (event: MouseEvent | TouchEvent) => {
       // Check if the event target is an interactive element within the widget
       const target = event.target as HTMLElement;
-      if (widgetRef.current && widgetRef.current.contains(target)) {
+
+      const path = event.composedPath();
+      // Check if your widget's element (widgetRef.current) is part of the event's path.
+      // If it is, the click originated inside your widget or 
+      // one of its children (including Shadow DOM children).
+      if (widgetRef.current && path.includes(widgetRef.current)) {
         // If clicking/touching within the widget, don't capture selection
         return;
       }
@@ -216,8 +221,8 @@ export function FloatingAIWidget({
   };
 
   const clearSelection = () => {
-    setSelectedText("");
     setIsQuoteMode(false);
+    setSelectedText("");
   };
 
   const selectedServiceName = aiServices.find((s) => s.id === selectedService)?.name || "ChatGPT"
