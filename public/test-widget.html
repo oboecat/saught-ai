@@ -1,93 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saught Widget Test</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Widget Test Page</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            line-height: 1.6;
-            color: #333;
-        }
-        h1 {
-            color: #111;
-            margin-bottom: 30px;
-        }
-        .section {
-            margin-bottom: 40px;
-            padding: 20px;
-            background: #f5f5f5;
-            border-radius: 8px;
-        }
-        code {
-            background: #e5e5e5;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
-        }
-        pre {
-            background: #272822;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 6px;
-            overflow-x: auto;
-        }
-        .highlight {
-            background: #fef3c7;
-            padding: 4px 8px;
-            border-radius: 4px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+      p {
+        color: #666;
+        line-height: 1.6;
+      }
+      .info {
+        background: #f0f4f8;
+        padding: 20px;
+        border-radius: 6px;
+        margin: 20px 0;
+      }
+      .info code {
+        background: #e1e8ed;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: "Courier New", monospace;
+      }
     </style>
-</head>
-<body>
-    <h1>Saught AI Widget Test Page</h1>
-    
-    <div class="section">
-        <h2>Welcome to the Saught Widget Demo</h2>
-        <p>This page demonstrates the Saught AI widget. Look for the <strong>"Ask AI"</strong> button in the bottom-right corner of this page.</p>
-        <p>The widget allows you to ask questions about the content on this page and get answers from your preferred AI service.</p>
-    </div>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Saught AI Widget Test Page</h1>
+      <p>
+        This page tests the Saught AI widget in a clean environment to help
+        debug styling issues.
+      </p>
 
-    <div class="section">
-        <h2>How it works</h2>
-        <p>The widget is loaded via a simple script tag:</p>
-        <pre>&lt;script src="v1.js"&gt;&lt;/script&gt;</pre>
-        <p>Once loaded, it automatically appears on your page with a floating button that users can click to ask questions.</p>
-    </div>
+      <div class="info">
+        <h2>Test Environment</h2>
+        <p>The widget should appear in the bottom-right corner of this page.</p>
+        <p>Widget version: <code>v0.js</code></p>
+        <p>Check the browser console for any errors.</p>
+      </div>
 
-    <div class="section">
-        <h2>Features</h2>
+      <div class="info">
+        <h2>Expected Behavior</h2>
         <ul>
-            <li>Choose from multiple AI services (ChatGPT, Claude, Perplexity, Copilot, Grok)</li>
-            <li>Quote text from the page by selecting it and clicking the quote button</li>
-            <li>The widget remembers your preferred AI service</li>
-            <li>Clean, modern UI that works on any website</li>
-            <li>Isolated in a Shadow DOM to prevent style conflicts</li>
+          <li>Widget should use Inter font (similar to Geist)</li>
+          <li>Shadows should be visible on the widget button and dropdown</li>
+          <li>All Tailwind utility classes should work properly</li>
+          <li>The widget should be isolated in a Shadow DOM</li>
         </ul>
-    </div>
+      </div>
 
-    <div class="section">
-        <h2>Configuration Options</h2>
-        <p>You can customize the widget by adding data attributes to the script tag:</p>
-        <pre>&lt;script 
-    src="v1.js"
-    data-default-ai="claude"
-    data-placeholder="Ask me anything..."
-    data-agent-prompt="Custom prompt template"
-&gt;&lt;/script&gt;</pre>
-    </div>
-
-    <div class="section">
-        <h2>Try it out!</h2>
-        <p>Try selecting some text on this page and then clicking the <span class="highlight">quote button</span> in the widget to include it as context in your question.</p>
-        <p>For example, you might select this paragraph and ask: "What does this paragraph explain?"</p>
+      <div class="info">
+        <h2>Debug Info</h2>
+        <p>
+          Open DevTools and inspect the
+          <code>#saught-widget-root</code> element.
+        </p>
+        <p>Check the Shadow DOM for proper CSS injection.</p>
+      </div>
     </div>
 
     <!-- Load the widget -->
-    <script async src="./v1.js"></script>
-</body>
-</html> 
+    <script async src="./v0.js"></script>
+  </body>
+</html>

@@ -19,7 +19,7 @@ const methods = [
     id: "shadcn",
     name: "shadcn",
     description: "For React/Next.js projects using shadcn components",
-    code: `npx shadcn add https://saught.ai
+    code: `npx shadcn add https://saught.ai/fab.json
 
 // Then use it in your component:
 import { FloatingAIWidget } from "@/components/floating-ai-widget"

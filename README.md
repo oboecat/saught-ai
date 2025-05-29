@@ -18,10 +18,10 @@ Saught AI is a lightweight JavaScript widget that adds an "Ask AI" button to any
 
 ```html
 <!-- Latest version (recommended) -->
-<script async src="https://cdn.saught.ai/v0.js"></script>
+<script async src="https://saught.ai/v0.js"></script>
 
 <!-- Or pin to specific version -->
-<script async src="https://cdn.saught.ai/v0.2.0.js"></script>
+<script async src="https://saught.ai/v0.2.0.js"></script>
 ```
 
 ### shadcn (React/Next.js)
@@ -51,7 +51,7 @@ export default function MyPage() {
 
 ```html
 <script 
-  src="https://cdn.saught.ai/v0.js"
+  src="https://saught.ai/v0.js"
   data-default-ai="claude"
 ></script>
 ```
@@ -62,7 +62,7 @@ Options: `chatgpt`, `claude`, `perplexity`, `copilot`, `grok`
 
 ```html
 <script 
-  src="https://cdn.saught.ai/v0.js"
+  src="https://saught.ai/v0.js"
   data-placeholder="Ask about our docs..."
 ></script>
 ```
@@ -71,7 +71,7 @@ Options: `chatgpt`, `claude`, `perplexity`, `copilot`, `grok`
 
 ```html
 <script 
-  src="https://cdn.saught.ai/v0.js"
+  src="https://saught.ai/v0.js"
   data-agent-prompt="You're helping someone on ${webpage_url}. They selected: ${text_selection_context}. Question: ${question}"
 ></script>
 ```

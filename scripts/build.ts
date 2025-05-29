@@ -124,7 +124,7 @@ const indexSchema = {
 } satisfies Schema;
 
 fs.writeFileSync(
-  path.join(registry, "index.json"),
+  path.join(registry, "fab.json"),
   JSON.stringify(indexSchema, null, 2)
 );
 

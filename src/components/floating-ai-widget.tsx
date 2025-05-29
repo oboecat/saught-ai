@@ -19,6 +19,7 @@ interface FloatingAIWidgetProps {
   placeholder?: string;
   aiServices?: { id: string; name: string; url: string }[];
   textSelectionPrefix?: string;
+  isWidget?: boolean;
 }
 
 const defaultAiServices = [
@@ -39,7 +40,8 @@ export function FloatingAIWidget({
   placeholder = "Type your question...", 
   defaultAI = "chatgpt",
   aiServices = defaultAiServices,
-  textSelectionPrefix = defaultTextSelectionPrefix
+  textSelectionPrefix = defaultTextSelectionPrefix,
+  isWidget = false,
 }: FloatingAIWidgetProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [selectedService, setSelectedService] = useState(() => {
@@ -100,9 +102,15 @@ export function FloatingAIWidget({
       if (!widgetRef.current) return
 
       if (suppressClose || isPinned || isQuoteMode) return;
-      
+      const path = event.composedPath();
+
+      // Check if your widget's element (widgetRef.current) is part of the event's path.
+      // If it is, the click originated inside your widget or 
+      // one of its children (including Shadow DOM children).
+      const isClickInsideWidget = path.includes(widgetRef.current);
+
       // Simple check - if the click target is not contained in our widget, close it
-      if (!widgetRef.current.contains(event.target as Node)) {
+      if (!isClickInsideWidget) {
         setIsExpanded(false)
       }
     }
@@ -216,7 +224,7 @@ export function FloatingAIWidget({
 
   return (
     <div id="floating-ai-widget" ref={widgetRef} className="fixed bottom-6 right-6 z-50 transition-all duration-300 ease-in-out">
-      <div className={`bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl shadow-2xl overflow-hidden transition-transform duration-200 ease-out ${isExpanded ? 'scale-100' : 'scale-95 hover:scale-100'}`}>
+      <div className={`bg-white/20 backdrop-blur-md border border-black/10 rounded-2xl shadow-2xl shadow-black/20 overflow-hidden transition-transform duration-200 ease-out ${isExpanded ? 'scale-100' : 'scale-95 hover:scale-100'}`}>
         {!isExpanded ? (
           // Collapsed State
           <div className="flex items-center gap-2 p-3">
@@ -234,7 +242,10 @@ export function FloatingAIWidget({
                   <ChevronDown className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent 
+                align="end"
+                container={isWidget ? widgetRef.current?.getRootNode() as Element : undefined}
+              >
                 {aiServices.map((service) => (
                   <DropdownMenuItem 
                     key={service.id} 
@@ -260,7 +271,10 @@ export function FloatingAIWidget({
                       <ChevronDown className="h-3 w-3 ml-1" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start">
+                  <DropdownMenuContent 
+                    align="start"
+                    container={widgetRef.current?.getRootNode() as Element}
+                  >
                     {aiServices.map((service) => (
                       <DropdownMenuItem 
                         key={service.id} 
@@ -350,9 +364,11 @@ export function FloatingAIWidget({
                 </Button>
               </div>
             </form>
-
-            <div className="mt-2 text-xs text-gray-600">
-              {question.trim() ? "Click send or press Enter to submit ✓" : "Type your question above"}
+            <div className="flex justify-between items-end">
+              <div className="mt-2 text-xs text-gray-600">
+                {question.trim() ? "Click send or press Enter" : "Type your question above"}
+              </div>
+              <a href="https://saught.ai/" className="text-xs text-gray-600 underline">by saught.ai</a>
             </div>
           </div>
         )}

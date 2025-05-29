@@ -1,6 +1,6 @@
+import './widget-styles.css';
 import { createRoot } from 'react-dom/client';
 import { FloatingAIWidget } from './widget-wrapper';
-import './widget-styles.css';
 
 // Type definitions
 interface WidgetConfig {
@@ -18,12 +18,31 @@ declare global {
   interface Window {
     SaughtWidget?: SaughtWidgetAPI;
     initSaughtWidget?: () => void;
-    __saughtWidgetCSS?: string;
   }
 }
 
+async function injectStyle(shadowRoot: ShadowRoot) {
+  // Inject Google Fonts first
+  const fontLink = document.createElement('link');
+  fontLink.rel = 'stylesheet';
+  fontLink.href = 'https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&family=Geist+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap';
+  shadowRoot.appendChild(fontLink);
+
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  const fileName = `${process.env.WIDGET_CSS_URL}/v${process.env.WIDGET_VERSION}.css`;
+
+  const response = await fetch(fileName);
+  const body = await response.text();
+
+  const style = document.createElement("style");
+  style.textContent = body;
+  shadowRoot.appendChild(style);
+
+}
+
 // Initialize the widget
-function initSaughtWidget() {
+async function initSaughtWidget() {
   // Check if widget already exists
   if (document.getElementById('saught-widget-root')) {
     console.warn('Saught widget already initialized');
@@ -36,14 +55,7 @@ function initSaughtWidget() {
   
   // Create shadow root
   const shadowRoot = hostElement.attachShadow({ mode: 'open' });
-  
-  // Inject styles into shadow DOM
-  const styleEl = document.createElement('style');
-  // The build process should inject CSS as a global variable
-  if (window.__saughtWidgetCSS) {
-    styleEl.textContent = window.__saughtWidgetCSS;
-    shadowRoot.appendChild(styleEl);
-  }
+  await injectStyle(shadowRoot);
   
   // Create mount point inside shadow DOM
   const mountPoint = document.createElement('div');
@@ -73,7 +85,7 @@ function initSaughtWidget() {
   
   // Render the widget
   const renderWidget = (widgetConfig: WidgetConfig) => {
-    root.render(<FloatingAIWidget {...widgetConfig} />);
+    root.render(<FloatingAIWidget {...widgetConfig} isWidget={true} />);
   };
   
   renderWidget(config);
