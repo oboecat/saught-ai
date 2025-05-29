@@ -145,8 +145,6 @@ export function FloatingAIWidget({
 
     const handleSelectionEnd = (event: MouseEvent | TouchEvent) => {
       // Check if the event target is an interactive element within the widget
-      const target = event.target as HTMLElement;
-
       const path = event.composedPath();
       // Check if your widget's element (widgetRef.current) is part of the event's path.
       // If it is, the click originated inside your widget or 

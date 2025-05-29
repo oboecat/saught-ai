@@ -1,4 +1,3 @@
-import "dotenv/config";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
@@ -10,7 +9,7 @@ import path from "node:path";
 import packageJson from './package.json' with { type: 'json' };
 import postcssImport from "postcss-import";
 import tailwindcss from "@tailwindcss/postcss";
-import postCssBumpProperties from "./scripts/post-css-bump-properties.js";
+import postCssBumpProperties from "./scripts/post-css-bump-properties.mjs";
 
 export const VERSION = packageJson.version;
 export const MAJOR_VERSION = VERSION.split('.')[0];
@@ -18,6 +17,9 @@ export const MAJOR_VERSION = VERSION.split('.')[0];
 // Widget URLs
 export const WIDGET_LATEST_URL = `https://saught.ai/v${MAJOR_VERSION}.js`;
 export const WIDGET_PINNED_URL = `https://saught.ai/v${VERSION}.js`; 
+export const WIDGET_CSS_URL = process.env.NODE_ENV === "production" ? 
+    `https://saught.ai/v${VERSION}.css` : 
+    `http://localhost:3000/v${VERSION}.css`;
 
 const version = VERSION;
 
@@ -68,7 +70,7 @@ export default {
     replace({
       "process.env.NODE_ENV": JSON.stringify("production"),
       "process.env.WIDGET_VERSION": JSON.stringify(version),
-      "process.env.WIDGET_CSS_URL": JSON.stringify(process.env.WIDGET_CSS_URL),
+      "process.env.WIDGET_CSS_URL": JSON.stringify(WIDGET_CSS_URL),
       preventAssignment: true,
     }),
     terser({

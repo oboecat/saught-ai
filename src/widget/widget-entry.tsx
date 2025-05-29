@@ -7,6 +7,7 @@ interface WidgetConfig {
   agentPrompt?: string;
   defaultAI?: string;
   placeholder?: string;
+  textSelectionPrefix?: string;
 }
 
 interface SaughtWidgetAPI {
@@ -30,9 +31,8 @@ async function injectStyle(shadowRoot: ShadowRoot) {
 
   const link = document.createElement('link');
   link.rel = 'stylesheet';
-  const fileName = `${process.env.WIDGET_CSS_URL}/v${process.env.WIDGET_VERSION}.css`;
 
-  const response = await fetch(fileName);
+  const response = await fetch(process.env.WIDGET_CSS_URL!);
   const body = await response.text();
 
   const style = document.createElement("style");
@@ -66,7 +66,7 @@ async function initSaughtWidget() {
   document.body.appendChild(hostElement);
   
   // Parse configuration from script tag if available
-  const scriptTag = document.currentScript || document.querySelector('script[src*="saught.ai/v1.js"]') || document.querySelector('script[src*="v1.js"]');
+  const scriptTag = document.currentScript || document.querySelector('script[src^="https://saught.ai/v"][src$=".js"]');
   let config: WidgetConfig = {};
   
   if (scriptTag) {
@@ -74,10 +74,11 @@ async function initSaughtWidget() {
     const agentPrompt = scriptTag.getAttribute('data-agent-prompt');
     const defaultAI = scriptTag.getAttribute('data-default-ai');
     const placeholder = scriptTag.getAttribute('data-placeholder');
-    
+    const textSelectionPrefix = scriptTag.getAttribute('data-text-selection-prefix');
     if (agentPrompt) config.agentPrompt = agentPrompt;
     if (defaultAI) config.defaultAI = defaultAI;
     if (placeholder) config.placeholder = placeholder;
+    if (textSelectionPrefix) config.textSelectionPrefix = textSelectionPrefix;
   }
   
   // Create React root
