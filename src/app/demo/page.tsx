@@ -31,7 +31,7 @@ export default function DemoPage() {
                 <li>When a visitor clicks "Ask AI", the widget opens with a text input</li>
                 <li>They can select any text on your page and click the quote button to include it</li>
                 <li>The widget constructs a prompt with the page URL, selected text, and their question</li>
-                <li>It opens their chosen AI service (ChatGPT, Claude, etc.) in a new tab with the full context</li>
+                <li>It opens their chosen AI service (ChatGPT, Copilot, etc.) in a new tab with the full context</li>
               </ul>
 
               <h3 className="text-lg font-medium text-black mt-6 mb-3">Privacy First</h3>

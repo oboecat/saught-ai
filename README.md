@@ -4,7 +4,7 @@ A little widget that connects your page, your users, and their favorite agent.
 
 ## What is it?
 
-Saught AI is a lightweight JavaScript widget that adds an "Ask AI" button to any webpage. When users click it, they can ask questions about the current page content and get redirected to their preferred AI service (ChatGPT, Claude, Perplexity, etc.) with full context.
+Saught AI is a lightweight JavaScript widget that adds an "Ask AI" button to any webpage. When users click it, they can ask questions about the current page content and get redirected to their preferred AI service (ChatGPT, Perplexity, etc.) with full context.
 
 ## Features
 
@@ -52,11 +52,11 @@ export default function MyPage() {
 ```html
 <script 
   src="https://saught.ai/v0.js"
-  data-default-ai="claude"
+  data-default-ai="chatgpt"
 ></script>
 ```
 
-Options: `chatgpt`, `claude`, `perplexity`, `copilot`, `grok`
+Options: `chatgpt`, `perplexity`, `copilot`, `grok`
 
 ### Custom placeholder
 

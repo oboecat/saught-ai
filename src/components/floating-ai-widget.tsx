@@ -24,7 +24,7 @@ interface FloatingAIWidgetProps {
 
 const defaultAiServices = [
   { id: "chatgpt", name: "ChatGPT", url: "https://chatgpt.com/?hints=search&q=" },
-  { id: "claude", name: "Claude", url: "https://claude.ai/chat?q=" },
+  // { id: "claude", name: "Claude", url: "https://claude.ai/chat?q=" },
   // It would seem Gemini does not support query strings, yet.
   // { id: "gemini", name: "Gemini", url: "https://gemini.google.com/app?q=" },
   { id: "perplexity", name: "Perplexity", url: "https://www.perplexity.ai/?q=" },
