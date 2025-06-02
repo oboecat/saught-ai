@@ -2,6 +2,7 @@
   "name": "sought-ai",
   "version": "0.6.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "npm run build:registry && next build",
